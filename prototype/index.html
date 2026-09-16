@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Ride Archive · Your riding history</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script defer src="app.js"></script><script defer src="query-ui.js"></script>
+</head>
+<body>
+  <header><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">↗</span> RIDE ARCHIVE</a><span class="edition">Your riding history <span class="dot">·</span> Local prototype</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">RIDE ARCHIVE · QUERY PROOF OF CONCEPT</p><h1>Your data. Your questions.</h1><p class="subtitle">Three recordings. Two rally routes. Your data, together.</p></div><div class="view-switch" role="group" aria-label="Archive view"><button id="map-view" aria-pressed="true">Map</button><button id="timeline-view" aria-pressed="false">Chronological</button></div></section>
+    <section class="query-panel" aria-label="Query your archive">
+      <label for="nl-query">Ask your archive <span class="small">AI setup deferred</span></label>
+      <div class="ask-row"><input id="nl-query" disabled placeholder="Show routes from my 2025 Touratech rally trip"><button disabled>Translate</button></div>
+      <p class="small">Natural language is not connected yet. Choose an example or write a structured query below.</p>
+      <div id="examples" class="example-row" aria-label="Example structured queries"></div>
+      <details id="query-editor" open><summary>Inspect / edit structured query</summary><label class="sr-label" for="structured-query">Structured query JSON</label><textarea id="structured-query" rows="9" spellcheck="false"></textarea></details>
+      <div class="query-actions"><button id="run-query">Run query</button><button id="save-query">Save query locally</button><select id="saved-queries" aria-label="Saved queries"><option value="">Load a saved query</option></select><button id="export-results" disabled>Export shown results</button><a href="/api/export">Export entire archive</a></div>
+      <p id="query-status" role="status" aria-live="polite"></p><p id="query-error" role="alert" hidden></p>
+    </section>
+    <section class="toolbar"><p id="count" aria-live="polite"></p></section>
+    <div id="error" role="alert" hidden></div>
+    <section class="workspace" id="workspace"><aside aria-label="Archive entries"><div class="list-heading"><h2>Archive entries</h2><span>DATED FIRST</span></div><div id="ride-list"></div><p class="small aside-note">Pick a ride to explore its track.<br>Bike and trip context supplied by you.</p></aside><div class="map-wrap"><div id="map" aria-label="Interactive map of recorded motorcycle rides"></div><button id="fit" class="map-fit">Show filtered rides</button><div class="map-key"><span><i class="solid"></i>Track / supplied route</span><span><i class="dashed"></i>Sampling gap</span></div><div id="tile-error" hidden>Basemap unavailable. Recorded tracks are still shown.</div></div></section>
+    <section id="timeline" hidden aria-label="Chronological ride history"></section>
+    <section id="detail" hidden aria-label="Selected ride details"></section>
+    <footer><span>Private local preview · GPX data is served locally. Online basemap requests reveal the viewed map area.</span><span>Local SQLite · read-only queries · AI not configured.</span></footer>
+  </main>
+</body>
+</html>
