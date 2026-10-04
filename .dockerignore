@@ -1,0 +1,9 @@
+.git
+local_data
+.env*
+web/node_modules
+web/dist
+prototype
+analysis
+ride_archive
+__pycache__

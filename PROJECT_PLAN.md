@@ -10,6 +10,8 @@ The MVP makes ride data owned, structured, queryable, and portable. Its design m
 
 ## 1. Define the domain and data model
 
+**In progress:** [Core data model draft](docs/CORE_DATA_MODEL.md) proposes User, ArchiveEntry, Source, Trip, and Bike, with evidence relationships, provenance, metric ownership, and mappings for the five sample files. Product choices remain under review.
+
 Define source files, tracks/segments/points, rides, trips, bikes, annotations, derived metrics, and provenance. Decide which are first-class entities and their cardinalities before choosing the physical schema. A ride as a real outing and a trip as a group of rides are proposals to review, not settled requirements.
 
 Address multiple recordings per outing, multiple tracks per file, supplied routes versus observed paths, duplicates, missing timestamps, reported participation, and overlapping recordings. Original evidence, user assertions, enrichment, and computed values must remain distinguishable. Supplied route length must not silently become observed riding distance.
@@ -20,6 +22,8 @@ Address multiple recordings per outing, multiple tracks per file, supplied route
 
 ## 2. Define supported questions and query semantics
 
+**In progress:** [Query language v1 draft and acceptance corpus](docs/QUERY_LANGUAGE_V1.md) records the supported text/proximity/catalog slice, unknown-value behavior, and 24 labeled examples. The home page now starts with nearby map results and offers text, structured, and list modes. A public server-side query executor, scalar metrics, NL translation, and broader corpus validation remain open.
+
 Build 20–30 realistic questions with expected interpretations and results. Include scalar filters, any proposed spatial/aggregate needs, missing data, ambiguous names, relative dates, units, unsupported requests, and empty results. Decide the MVP scope explicitly.
 
 Define the result unit (rides, tracks, routes, trips, or other entities), query operators, null semantics, sorting, pagination, limits, and reproducibility. Distinguish schema-valid queries from semantically correct translations. These examples guide the query language and later NL evaluation.
@@ -29,6 +33,8 @@ Define the result unit (rides, tracks, routes, trips, or other entities), query 
 **Completion criterion:** supported questions have unambiguous executable meanings and expected results; unavailable evidence is not presented as a measured zero or a known fact.
 
 ## 3. Design system architecture and API contracts
+
+**September 25 update:** Go + SQLite + Svelte/TypeScript selected, with Fly.io preferred for hosting. The initial [core API](docs/API.md), SQL migrations, and minimal client are implemented as a foundation. This does not complete query semantics, general ingestion, deployment, or backup/recovery design. See [run instructions](README.md).
 
 Complete the architecture before building general ingestion. Separate responsibilities logically; this does not require separate deployed services.
 

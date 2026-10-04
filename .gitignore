@@ -3,3 +3,7 @@ __pycache__/
 local_data/
 .env
 .env.*
+web/node_modules/
+web/dist/
+/bin/
+fly.toml

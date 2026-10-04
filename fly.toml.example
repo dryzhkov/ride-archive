@@ -1,0 +1,34 @@
+# Copy to fly.toml and set a globally unique app name before deployment.
+app = "replace-with-your-app-name"
+primary_region = "sea"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  ARCHIVE_ADDR = "0.0.0.0:8080"
+  ARCHIVE_DB = "/data/archive.sqlite3"
+  ARCHIVE_WEB_DIR = "/app/web"
+  ARCHIVE_OWNER_ID = "personal-owner"
+
+[[mounts]]
+  source = "archive_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    timeout = "5s"
+    path = "/readyz"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
