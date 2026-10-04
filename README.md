@@ -6,6 +6,16 @@ Go + SQLite backend, Svelte + TypeScript client. Initial core-model/API foundati
 
 Requires Go 1.27+ and Node 22.12+ (Node 26 used for verification).
 
+On macOS, run the setup script to install missing Go/Node tools with Homebrew, install frontend dependencies, verify and build both parts, and start the app:
+
+```sh
+./setup.sh
+```
+
+It keeps the server in the foreground; press Ctrl-C to stop it. On other platforms, install Go 1.27+ and Node 22.12+ first, then use the same script.
+
+To build and run the pieces manually:
+
 ```sh
 npm ci --prefix web
 npm run build --prefix web
